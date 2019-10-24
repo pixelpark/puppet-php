@@ -99,8 +99,8 @@ class php::fpm (
 
   Class['php::fpm::config'] ~> Class['php::fpm::service']
 
-  $real_global_pool_settings = lookup('php::fpm::global_pool_settings', Hash, {'strategy' => 'unique'}, $global_pool_settings)
-  $real_pools = lookup('php::fpm::pools', Hash, {'strategy' => 'unique'}, $pools)
+  $real_global_pool_settings = lookup('php::fpm::global_pool_settings', Hash, {'strategy' => 'deep'}, $global_pool_settings)
+  $real_pools = lookup('php::fpm::pools', Hash, {'strategy' => 'deep'}, $pools)
   create_resources(::php::fpm::pool, $real_pools, $real_global_pool_settings)
 
   # Create an override to use a reload signal as trusty and utopic's
